@@ -1,0 +1,207 @@
+.page-enter-active,
+.page-leave-active {
+  transition: transform 1s ease;
+}
+
+.page-enter-active {
+  transition-delay: 300ms;
+}
+
+.page-enter {
+  transform: translateY(100px);
+}
+
+.page-enter img {
+  transform: translateY(100px);
+}
+
+.page-leave-to {
+  transform: translateY(-100px);
+}
+
+.page-leave-to img {
+  transform: translateY(-50px);
+}
+
+.page-enter,
+.page-leave-to {
+  transition-delay: none;
+  pointer-events: none;
+}
+
+@-webkit-keyframes loadergradient {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes loadergradient {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes loadergradient {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.o-loader {
+  z-index: -10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  will-change: transform;
+  transition: all 0s 1s;
+}
+.o-loader.is-loading {
+  z-index: 2000;
+  opacity: 1;
+  transition: all 0s 0s;
+  .o-loader__anim {
+    opacity: 1;
+    transition: opacity 0.4s ease-out 0.4s;
+  }
+  .o-loader__gradients {
+    --animation-state: running;
+  }
+}
+.o-loader__bg {
+  position: fixed;
+  top: -50vmax;
+  left: -50vmax;
+  display: block;
+  width: 100vmax;
+  height: 100vmax;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  transform: scale(0);
+  will-change: transform;
+}
+.o-loader__anim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 0.6s ease-in 0s;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(#fff),
+      to(rgba(255, 255, 255, 0))
+    );
+    background: -webkit-linear-gradient(top, #fff, rgba(255, 255, 255, 0));
+    background: -o-linear-gradient(top, #fff, rgba(255, 255, 255, 0));
+    background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0));
+  }
+}
+.o-loader__gradients {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation-play-state: paused;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: #ffe603;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(#ffe603),
+      to(#8ce894)
+    );
+    background: -webkit-linear-gradient(top, #ffe603, #8ce894);
+    background: -o-linear-gradient(top, #ffe603, #8ce894);
+    background: linear-gradient(to bottom, #ffe603, #8ce894);
+    animation: loadergradient 4s infinite var(--animation-state) calc(4s / 2);
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+  }
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(224, 25, 25, 0.5);
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgba(224, 25, 25, 0.5)),
+      to(#274ee5)
+    );
+    background: -webkit-linear-gradient(top, rgba(224, 25, 25, 0.5), #274ee5);
+    background: -o-linear-gradient(top, rgba(224, 25, 25, 0.5), #274ee5);
+    background: linear-gradient(to bottom, rgba(224, 25, 25, 0.5), #274ee5);
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+    animation: loadergradient 4s infinite var(--animation-state);
+  }
+}
