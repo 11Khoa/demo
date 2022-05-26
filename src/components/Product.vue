@@ -2,9 +2,9 @@
 <transition appear @before-enter="beforeEnter" @enter="enter">
   <div class="item">
     <a class="boxes" href="#">
-      <img class="da-image" :src="imgUrl.image" alt="pd1" />
+      <img class="da-image" :src="imgUrl.image" alt="pd1" /><!-- v-lazy="imgUrl.image"  -->
       <div class="overlay">
-        <img :src="imgUrl.image_on" alt="pd1" />
+        <img :src="imgUrl.image_on" alt="pd1" /><!-- v-lazy="imgUrl.image_on"  -->
       </div>
       <div class="countdown" v-if="deletecoundown() > 0 && priceshow() < price.price_old">
         <div class="count-down clock" :data-countdown="new Date(datesale.end_sale)">

@@ -5,6 +5,7 @@ import Unicon from "vue-unicons/dist/vue-unicons-vue2.umd";
 // import PageLoader from "./components/ComLoader";
 // import Loading from "./components/loading";
 import { store } from "./store/store";
+// import VueLazyload from 'vue-lazyload'
 import {
   uniMegaphone,
   uniFacebookF,
@@ -80,6 +81,12 @@ import * as Tabs from "vue-slim-tabs";
 import "vue-slim-tabs/themes/default.css";
 Vue.use(Tabs);
 
+// Vue.use(VueLazyload,{
+//   preLoad: 1.3,
+//   loading: 'assets/images/loading.gif',
+//   attempt: 1
+// })
+
 // Vue.component("PageLoader",PageLoader);
 // Vue.component("Loading",Loading);
 
@@ -98,18 +105,20 @@ router.beforeEach((to, from, next) => {
   app.$store.commit('setLoading', true)
   
   // Simulate request
-    console.log(app.$store.state.loading);
   setTimeout(() => {
-    console.log(2);
     next();
   }, 300)
   
 });
 
 router.afterEach(() => {
-  setTimeout(()=>{
-    app.$store.commit('setLoading', false)
-  },800)
+  if(document.readyState==='complete'){
+    setTimeout(()=>{
+      
+      app.$store.commit('setLoading', false)
+    },800)
+  }
+  
 });
 
 //style css

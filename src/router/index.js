@@ -60,11 +60,11 @@ const routes = [
           ]
         }
       },
-      // {
-      //   path: '/:catchAll(.*)',
-      //   conponent: NotFoundComponent,
-      //   name: 'Page Not Found',
-      // }
+      {
+        path: '/*',
+        component: () => import(/* webpackChunkName: "television" */ "../views/404.vue"),
+        name: '404',
+      }
     ],
   },
   { path: '/login', component: LoginPage },

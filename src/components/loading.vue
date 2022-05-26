@@ -81,7 +81,9 @@ export default {
     //   } 
     // }
     document.addEventListener('DOMContentLoaded', () => {
-         this.show=false
+         setTimeout(() => {
+           this.show=false
+         }, 300);
     })
   },
 

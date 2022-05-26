@@ -124,7 +124,7 @@ export default {
 
   beforeMount() {
     const menu = route.options.routes[0].children;
-    this.listMenu = menu;
+    this.listMenu = menu.slice(0,-1);
   },
   // methods:{
   //   if(listMenu){
@@ -134,4 +134,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style >
+</style>
