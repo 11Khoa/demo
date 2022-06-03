@@ -1,9 +1,9 @@
 <template>
 
   <div>
-      <div class="loading-bar" v-show="show">
+      <!-- <div class="loading-bar" v-show="show">
     <div class="inner" :style="styles"></div>
-  </div>
+  </div> -->
     <div
     id="appLoading"
     class="o-loader js-loader"
@@ -19,8 +19,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import {gsap} from "gsap"
 
-let _loadingInterval = 0;
+// let _loadingInterval = 0;
 
 export default {
   name: "loading-bar",
@@ -38,39 +39,61 @@ export default {
   computed: {
     ...mapGetters(["getLoading"]),
 
-    styles() {
-      let style = {
-        width: `${this.percent}%`,
-      };
-      if (this.status === "success") {
-        style.backgroundColor = this.color;
-      }
-      if (this.status === "error") {
-        style.backgroundColor = this.failedColor;
-      }
-      return style;
-    },
+    // styles() {
+    //   let style = {
+    //     width: `${this.percent}%`,
+    //   };
+    //   if (this.status === "success") {
+    //     style.backgroundColor = this.color;
+    //   }
+    //   if (this.status === "error") {
+    //     style.backgroundColor = this.failedColor;
+    //   }
+    //   return style;
+    // },
   },
 
   methods: {
     showProgress(show) {
       this.show = show;
     },
+    scale() {
+       let setSizes = Math.sqrt(
+          Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2)
+        )
+        return window.innerWidth > window.innerHeight
+          ? setSizes / window.innerWidth
+          : setSizes / window.innerHeight
+    },
     start() {
       this.showProgress(true);
-      this.percent = 0;
-
-      _loadingInterval = setInterval(() => {
-        this.percent = this.percent + 25;
-      }, 250);
+      console.log(this.scale());
+      gsap.to(this.$refs.loaderBG, {
+          duration: 0.8,
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          transformOrigin: '50% 50%',
+          scale: this.scale,
+          ease: 'Expo.easeInOut'
+        })
     },
     stop() {
-      clearInterval(_loadingInterval);
-      this.percent = 100;
-
       setTimeout(() => {
-        this.showProgress(false);
-      }, 250);
+          this.showProgress(false);
+          
+            // console.log(this.$refs.loaderBG);
+          gsap.fromTo(
+            this.$refs.loaderBG,
+            {
+              scale: this.scale
+            },
+            {
+              duration: 0.8,
+              scale: 0,
+              ease: 'Expo.easeIn'
+            }
+          )
+        }, 1200)
     },
   },
   mounted() {

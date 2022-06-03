@@ -114,7 +114,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   if(document.readyState==='complete'){
     setTimeout(()=>{
-      
+      console.log("done afterEach");
       app.$store.commit('setLoading', false)
     },800)
   }

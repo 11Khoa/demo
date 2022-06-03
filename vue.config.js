@@ -8,4 +8,8 @@ module.exports = {
         return options;
       });
   },
+  // publicPath: process.env.NODE_ENV === 'production'
+  //   ? '/vue01/' // Thay tên repository
+  //   : '/',
+  // publicPath: '/vue01/',
 };

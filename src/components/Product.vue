@@ -1,7 +1,8 @@
 <template>
 <transition appear @before-enter="beforeEnter" @enter="enter">
   <div class="item">
-    <a class="boxes" href="#">
+    <!-- <a class="boxes" href="#"> -->
+    <router-link class="boxes" :to="`${idproduct}`">
       <img class="da-image" :src="imgUrl.image" alt="pd1" /><!-- v-lazy="imgUrl.image"  -->
       <div class="overlay">
         <img :src="imgUrl.image_on" alt="pd1" /><!-- v-lazy="imgUrl.image_on"  -->
@@ -28,7 +29,8 @@
           </div>
         </div>
       </div>
-    </a>
+    </router-link>
+    <!-- </a> -->
     <span class="special-tag" v-if="price.price_old - price.price_new < price.price_old">{{ percent_sale() }}%</span>
     <div class="product_hover_block">
       <div class="action">
@@ -45,7 +47,8 @@
           <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x" /> <i class="fa fa-star-o fa-stack-2x" /></span>
         </div>
         <h4 class="ttl">
-          <a href="#">{{ name }}</a>
+          <!-- <a href="#">{{ name }}</a> -->
+          <router-link :to="`${idproduct}`">{{ name }}</router-link>
         </h4>
         <p class="price">
           <span class="price-new">${{ priceshow() }}</span>

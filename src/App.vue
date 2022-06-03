@@ -27,17 +27,17 @@ export default {
     window.removeEventListener('mousemove', this.cursorAttach)
   },
   methods: {
-    // cursorAttach(e) {
-    //   gsap.set('.js-loader-bg', {
-    //     x: e.clientX,
-    //     y: e.clientY
-    //     // scale: 0.5
-    //   })
-    //   // gsap.to('.cursor-follow', 0.9, {
-    //   //   x: e.clientX,
-    //   //   y: e.clientY
-    //   // })
-    // },
+    cursorAttach(e) {
+      gsap.set('.js-loader-bg', {
+        x: e.clientX,
+        y: e.clientY
+        // scale: 0.5
+      }),
+      gsap.to('.js-loader-bg', 0.1, {
+        x: e.clientX,
+        y: e.clientY
+      })
+    },
   }
 }
 </script>
